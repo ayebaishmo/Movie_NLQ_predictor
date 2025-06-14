@@ -41,11 +41,16 @@ INSTALLED_APPS = [
     'accounts'
 ]
 
+# settings.py
+AUTH_USER_MODEL = 'accounts.User'
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authetication.JWTAuthetication',
-    )
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
 }
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,8 +87,12 @@ WSGI_APPLICATION = 'movie_nlq.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nlq_db',
+        'USER': 'movie_nlq_db_user',
+        'PASSWORD': 'Lord',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
